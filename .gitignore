@@ -195,3 +195,5 @@ pip-log.txt
 #Custom
 OpenGL-GLFW/debug.txt
 
+#build
+build/
