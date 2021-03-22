@@ -86,7 +86,14 @@ namespace cgCourse
 		 * e.g. OpenGL reference, official OpenGL specification or a OpenGL cheatsheet
 		 */
 
-		//...
+		//glEnable(GL_CULL_FACE);
+		//glDisable(GL_CULL_FACE);
+		//glCullFace(GL_FRONT);
+		//glCullFace(GL_BACK);
+		//glFrontFace(GL_CCW);
+		//glFrontFace(GL_CW);
+		
+		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
 		/* END TODO */
 
@@ -108,7 +115,14 @@ namespace cgCourse
 
 		/* TODO: Add here code to call the draw method of the cuboid similar to the cube above */
 		
-		// ...
+		this->mvpMatrix = viewProjectionMatrix * this->cuboid->getModelMatrix();
+		glUniformMatrix4fv(this->mvpUniformLocation, 1, GL_FALSE, &this->mvpMatrix[0][0]);
+		// bind the Vertex Array Object of the cube and draw the triangles
+		glBindVertexArray(this->cuboid->getVertexArrayId());
+		glDrawElements(this->cuboid->getDrawElemType(), this->cuboid->getDrawElemCount(),
+			GL_UNSIGNED_INT, 0);
+		glBindVertexArray(0);
+
 
 
 
@@ -162,7 +176,7 @@ namespace cgCourse
 	{
 		// Camera matrix
 		glm::mat4 view = glm::lookAt(
-			glm::vec3(-1, 18, -18), // Camera is at (-1, 18, -18), in World Space
+			glm::vec3(-1, 5, -18), // Camera is at (-1, 18, -18), in World Space
 			glm::vec3(0, 0, 0), // and looks at the origin
 			glm::vec3(0, 1, 0)  // Head is up (set to 0,-1,0 to look upside-down)
 			);
