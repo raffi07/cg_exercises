@@ -27,6 +27,9 @@ namespace cgCourse
         
 		this->cube->setPosition(glm::vec3(-2.0, 0.0, 1.0));
         this->cube->setScaling(glm::vec3(1.0, 1.0, 3.0));
+		this->cube->setRotation(glm::radians((float)50.0), glm::vec3(0.0, 0.0, 1.0));
+		this->cube->calculateModelMatrix();
+		
 
 		this->torus = std::make_shared<Torus>();
 		constructed = this->torus->createVertexArray(0, 1, 2);
@@ -47,9 +50,9 @@ namespace cgCourse
          *  TODO: update the cube and the torus with rotations,
          *        translations and scalings
          */
+
+		
         
-
-
         // TODO End
         return true;
     }
