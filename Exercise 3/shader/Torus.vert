@@ -15,9 +15,10 @@ out vec3 fragColor;
 
 // matrices that stay constant for the whole mesh.
 uniform mat4 mvpMatrix;
+uniform mat3 normalMatrix;
 
 void main(){	
 	
 	gl_Position =  mvpMatrix * vec4(vPosition, 1);
-	fragColor = vColor;
+	fragColor = normalMatrix * vNormal;
 }

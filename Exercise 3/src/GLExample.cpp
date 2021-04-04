@@ -28,12 +28,12 @@ namespace cgCourse
 		this->cube->setPosition(glm::vec3(-2.0, 0.0, 1.0));
         this->cube->setScaling(glm::vec3(1.0, 1.0, 3.0));
 		this->cube->setRotation(glm::radians((float)50.0), glm::vec3(0.0, 0.0, 1.0));
-		this->cube->calculateModelMatrix();
 		
 
 		this->torus = std::make_shared<Torus>();
 		constructed = this->torus->createVertexArray(0, 1, 2);
 		this->torus->setPosition(glm::vec3(1.0, 0.0, 0.0));
+		//this->torus->setScaling(glm::vec3(0.25, 1.0, 1.0));
         
         // Init multiline field for normals of objects
         this->normalsTorus = std::make_shared<MultiLine>(this->torus->getPositions(),
@@ -50,7 +50,8 @@ namespace cgCourse
          *  TODO: update the cube and the torus with rotations,
          *        translations and scalings
          */
-
+		this->cube->calculateModelMatrix();
+		this->torus->calculateModelMatrix();
 		
         
         // TODO End
@@ -87,7 +88,8 @@ namespace cgCourse
         programForTorus->bind();
 		this->mvpMatrix = this->viewProjectionMatrix * this->torus->getModelMatrix();
 		/* TODO: add the normal matrix. */
-		
+		glm::mat3 normalMatrix = transpose(inverse(this->torus->getModelMatrix()));
+		glUniformMatrix3fv(programForTorus->getUniformLocation("normalMatrix"), 1, GL_FALSE, &normalMatrix[0][0]);
 		// TODO End
 		glUniformMatrix4fv(programForTorus->getUniformLocation("mvpMatrix"), 1, GL_FALSE, &this->mvpMatrix[0][0]);
         this->torus->draw();
@@ -97,9 +99,11 @@ namespace cgCourse
 		*  TODO: render the line object with the normals of the torus. Use the 
 		*  shaderprogram in "programForTorusNormals" for this.
 		*/
-		
-
-
+		programForTorusNormals->bind();
+		this->mvpMatrix = this->viewProjectionMatrix * this->torus->getModelMatrix();
+		glUniformMatrix4fv(programForTorusNormals->getUniformLocation("mvpMatrix"), 1, GL_FALSE, &this->mvpMatrix[0][0]);
+		this->normalsTorus->draw();
+		programForTorusNormals->unbind();
 
 		// TODO End
     }

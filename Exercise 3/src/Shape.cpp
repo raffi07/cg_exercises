@@ -106,20 +106,16 @@ namespace cgCourse
 	void Shape::setPosition(glm::vec3 _pos)
 	{
 		this->translationMatrix = glm::translate(this->translationMatrix, _pos);
-		//this->modelMatrix = glm::translate(this->modelMatrix, _pos);
 	}
     
     void Shape::setRotation(float _angle, glm::vec3 _rot)
     {
 		this->rotationMatrix = glm::rotate(this->rotationMatrix, _angle, _rot);
-		//this->modelMatrix = glm::rotate(this->modelMatrix, _angle, _rot);
     }
     
     void Shape::setScaling(glm::vec3 _scale)
     {
 		this->scalingMatrix = glm::scale(this->scalingMatrix, _scale);
-		//this->modelMatrix = glm::scale(this->modelMatrix, _scale);
-
     }
 
     void Shape::calculateModelMatrix()
