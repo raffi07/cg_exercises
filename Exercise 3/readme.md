@@ -1,0 +1,1 @@
+I wasn't quite sure what to do in the frag shader as I managed to get the wished result without changing anything there, could you maybe please explain when releasing the solution, what I should have done there, for best practices? Many thanks :)!
