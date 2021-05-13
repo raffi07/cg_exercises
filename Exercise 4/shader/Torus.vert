@@ -10,35 +10,52 @@ layout(location = 0) in vec3 vPosition;
 layout(location = 1) in vec3 vColor;
 layout(location = 2) in vec3 vNormal;
 
+in vec3 lightPos;
+in vec3 viewPos;
+
 // Output data will be interpolated for each fragment.
 // Tip: Try to use the flat modifier to make color associations of a fragment visible for debugging. 
 out vec3 objectColor;
 out vec3 normal;
+out vec3 FragPos;
 
 // matrices that stay constant for the whole mesh.
 uniform mat4 modelMatrix;
 uniform mat4 mvpMatrix;
+uniform bool ph;
 
 /* TODO additional variables
  *
  */
+layout(std140) uniform materialBlock
+{
+	vec3 ambient;
+	vec3 diffuse;
+	vec3 specular;
+} material;
 
 void main(){
 	normal = mat3(transpose(inverse(modelMatrix))) * vNormal;
-	// Output position of the vertex, in clip space : MVP * vPosition
-	gl_Position = mvpMatrix * vec4(vPosition, 1);
-	// The color of each vertex will be interpolated
-	// to produce the color of each fragment
-	// ... uncomment this for color
-	objectColor = vColor;
-	// ... uncomment this for color according to normals
-	//objectColor = vNormal;
 
-	/* TODO add there code for gourand shading
-	*
-	*/
+	FragPos = vec3(modelMatrix * vec4(vPosition, 1.0));
 
+	gl_Position = mvpMatrix * vec4(vPosition, 1.0);
 
+	if(!ph){
+		objectColor = material.ambient * vColor;
+
+		vec3 l = normalize(lightPos - FragPos);
+		float diff = max(dot(normalize(normal), l), 0.0);
+		objectColor += material.diffuse * diff * vColor;
+
+		vec3 r = reflect(-l, normalize(normal));
+		vec3 e = normalize(viewPos - FragPos);
+		float spec = max(dot(r, e), 0.0);
+		objectColor += material.specular * pow(spec, 32) * vColor;
+	}
+	else{
+		objectColor = vColor;
+	}
 
 
 

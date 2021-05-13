@@ -10,12 +10,12 @@ namespace cgCourse
 	{
 	public:
 		ShaderProgram(std::string _name);
-
-        
+           
         
         void deleteShaderProgramFromGPU();
         void bind() const;
         void unbind() const;
+        GLuint getProgram();
         
         // Get uniform locations, e.g. for our mvp matrix
         // This can be done on the fly however, usually

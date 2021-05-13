@@ -113,5 +113,10 @@ namespace cgCourse
     void ShaderProgram::unbind() const {
         glUseProgram(0);
     }
+
+	GLuint ShaderProgram::getProgram()
+	{
+		return this->program;
+	}
 }
 

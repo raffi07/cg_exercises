@@ -1,6 +1,7 @@
 #include "GLExample.h"
 #include "Cube.h"
 #include <iostream>
+#include "glm/ext.hpp"
 
 namespace cgCourse
 {
@@ -34,7 +35,8 @@ namespace cgCourse
 		};
 		this->lightbox->setPosition(glm::vec3(0.0, 0.5, -1.5));
 		this->lightbox->setScaling(glm::vec3(0.1, 0.1, 0.1));
-		this->lightboxColor = glm::vec3(1.0, 1.0, 1.0);
+		this->lightboxColor = glm::vec3(0.07, 0.27, 0.1);
+		//this->lightboxColor = glm::vec3(1.0, 1.0, 1.0);
 
 		// Init models
 		this->cube = std::make_shared<Cube>();
@@ -54,9 +56,9 @@ namespace cgCourse
         this->normalsTorus->setPosition(glm::vec3(1.0, 0.0, 0.0));
         
 		/* TODO set light info here */
-		// this->light.ambientTerm ...
-
-
+		this->light.ambientTerm = this->lightboxColor * (float)0.1;
+		this->light.diffuseTerm = this->lightboxColor * (float)0.8;
+		this->light.specularTerm = this->lightboxColor * (float)0.6;
 
 		// End
         return constructed;
@@ -109,11 +111,19 @@ namespace cgCourse
 	 * shaders. Don't forget that shader have to be bound before shader uniform can be set..
 	 */
 	void GLExample::addLightVariables(const std::shared_ptr<ShaderProgram>& _program) {
-		
-
-
-
-
+		GLuint lightBO, lightLoc;
+		_program->bind();
+		glGenBuffers(1, &lightBO);
+		glBindBuffer(GL_UNIFORM_BUFFER, lightBO);
+		glBufferData(GL_UNIFORM_BUFFER, sizeof(this->light), &this->light, GL_DYNAMIC_DRAW);
+		// the next 2 lines connect the uniform name and bufferobject to the same index 2
+		lightLoc = glGetUniformBlockIndex(_program->getProgram(), "materialBlock");
+		glUniformBlockBinding(_program->getProgram(), lightLoc, 1);
+		glUniform1i(_program->getUniformLocation("ph"), true);
+		glUniform3fv(_program->getUniformLocation("lightPos"), 1, &this->lightbox->getPosition()[0]);
+		glUniform3fv(_program->getUniformLocation("viewPos"), 1, &this->cam.getPosition()[0]);
+		glBindBufferBase(GL_UNIFORM_BUFFER, 1, lightBO);
+		_program->unbind();
 	}
 	// END TODO
 
