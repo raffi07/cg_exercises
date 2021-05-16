@@ -143,7 +143,10 @@ namespace cgCourse
 		//       the same texture either by setting the texture coordinates between 0.0 and 1.0
 		//       or by using one of the texture functions, e.g. with GL_REPEAT
 
-		//this->texCoords...
+        this->texCoords.push_back({ 0.0f, 1.0f });
+        this->texCoords.push_back({ 0.0f, 0.0f });
+        this->texCoords.push_back({ 1.0f, 1.0f });
+        this->texCoords.push_back({ 1.0f, 0.0f });
 		
 
 

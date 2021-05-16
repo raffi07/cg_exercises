@@ -111,7 +111,10 @@ namespace cgCourse
 		*/
 		
 		// this->texCoords->push_back(...
-
+		this->texCoords.push_back({ 0.0f, 1.0f });
+		this->texCoords.push_back({ 0.0f, 0.0f });
+		this->texCoords.push_back({ 1.0f, 1.0f });
+		this->texCoords.push_back({ 1.0f, 0.0f });
 
 
 
