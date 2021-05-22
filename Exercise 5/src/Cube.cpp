@@ -111,21 +111,53 @@ namespace cgCourse
 		*/
 		
 		// this->texCoords->push_back(...
-		this->texCoords.push_back({ 0.0f, 1.0f });
-		this->texCoords.push_back({ 0.0f, 0.0f });
-		this->texCoords.push_back({ 1.0f, 1.0f });
-		this->texCoords.push_back({ 1.0f, 0.0f });
+		//int positionsLength = positions.size();
+		//int firstCoord = 0;
+		//int secCoord = 0;
+
+		//for (int i = 0; i < positionsLength; i++) {
+		//	if (this->positions[i][0] > 0) {
+		//		firstCoord = 1.0f;
+		//	};
+		//	if (this->positions[i][1] > 0) {
+		//		secCoord = 1.0f;
+		//	};
+		//	this->texCoords.push_back({ firstCoord, secCoord });
+		//};
+
+		this->texCoords = {
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f},
+
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f},
+
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f},
+
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f},
+
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f},
+
+		{ 0.0f, 0.0f},   // index 16
+		{ 0.0f, 1.0f},
+		{ 1.0f, 1.0f},
+		{ 1.0f, 0.0f}
 
 
-
-
-
-
-
-
-
-
-
+		};
 
 		/* End TODO: */
 

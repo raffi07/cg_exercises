@@ -143,16 +143,41 @@ namespace cgCourse
 		//       the same texture either by setting the texture coordinates between 0.0 and 1.0
 		//       or by using one of the texture functions, e.g. with GL_REPEAT
 
-        this->texCoords.push_back({ 0.0f, 1.0f });
-        this->texCoords.push_back({ 0.0f, 0.0f });
-        this->texCoords.push_back({ 1.0f, 1.0f });
-        this->texCoords.push_back({ 1.0f, 0.0f });
+        //int positionsLength = positions.size();
+        //int firstCoord = 0;
+        //int secCoord = 0;
+
+        //for (int i = 0; i < positionsLength; i++) {
+        //    if (this->positions[i][0] > 0) {
+        //        firstCoord = 1.0f;
+        //    };
+        //    if (this->positions[i][1] > 0) {
+        //        secCoord = 1.0f;
+        //    };
+        //    this->texCoords.push_back({ firstCoord, secCoord });
+        //};
+
+        //float interval = 1.0f / (this->positions.size() / 4);
+
+        for (int j = 0; j < circleXZ.getSegments(); j++)
+        {
+            for (int i = 0; i < circleXY.getVertices().size(); i++)
+            {
+                this->texCoords.push_back({ (float)j / circleXY.getSegments()*1.5f, (float)i / circleXZ.getSegments() * 1.5f });
+            }
+        }
+
+        //int positionsLength = positions.size();
+        //int firstCoord = 0;
+        //int secCoord = 0;
+
+        //for (int i = 0; i < positionsLength; i++) {
+        //    this->texCoords.push_back({ 0.0f, 0.0f });
+        //    this->texCoords.push_back({ 1.0f, 0.0f });
+        //    this->texCoords.push_back({ 1.0f, 4.0f });
+        //    this->texCoords.push_back({ 0.0f, 1.0f });
+        //};
 		
-
-
-
-		
-
 		// END TODO
 	}
     

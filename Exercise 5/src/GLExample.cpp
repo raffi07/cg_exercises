@@ -68,7 +68,15 @@ namespace cgCourse
 		 */
 		this->cubetex = std::make_shared<Texture>();
 		this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/container.png");
-		//...
+
+		this->cubetexSpec = std::make_shared<Texture>();
+		this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/container_specular.png");
+
+		this->torustex = std::make_shared<Texture>();
+		this->torustex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall.jpg");
+
+		this->torustexSpec = std::make_shared<Texture>();
+		this->torustexSpec->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_specular.jpg");
 
 		// End TODO
 
@@ -137,9 +145,15 @@ namespace cgCourse
 		 *       variable in the shader is meant to be which texture layer when 
 		 *       used with glActiveTexture.
 		 */
-		
+		glActiveTexture(GL_TEXTURE0);
+		this->cubetex->bind();
+		GLint texDiffuse = programForCube->getUniformLocation("material.diffuse");
+		glUniform1i(texDiffuse, 0);
 
-
+		glActiveTexture(GL_TEXTURE1);
+		this->cubetexSpec->bind();
+		GLint texSpecular = programForCube->getUniformLocation("material.specular");
+		glUniform1i(texSpecular, 1);
 
 		// End TODO
 
@@ -152,7 +166,8 @@ namespace cgCourse
 		 *       to zero.
 		 */
 		
-
+		this->cubetex->unbind();
+		this->cubetexSpec->unbind();
 
 		// End TODO
         programForCube->unbind();
@@ -163,7 +178,15 @@ namespace cgCourse
 		/* TODO: apply the texture and the specular map for the torus as well 
 		 *       analogue to the function above.
 		*/
-		
+		glActiveTexture(GL_TEXTURE0);
+		this->torustex->bind();
+		GLint texDiffuse = programForTorus->getUniformLocation("material.diffuse");
+		glUniform1i(texDiffuse, 0);
+
+		glActiveTexture(GL_TEXTURE1);
+		this->torustexSpec->bind();
+		GLint texSpecular = programForTorus->getUniformLocation("material.specular");
+		glUniform1i(texSpecular, 1);
 
 
 		// End TODO
@@ -178,7 +201,8 @@ namespace cgCourse
 		*       to zero.
 		*/
 		
-
+		this->torustex->unbind();
+		this->torustexSpec->unbind();
 
 		// End TODO
 
