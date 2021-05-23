@@ -146,14 +146,12 @@ namespace cgCourse
 		 *       used with glActiveTexture.
 		 */
 		glActiveTexture(GL_TEXTURE0);
-		this->cubetex->bind();
-		GLint texDiffuse = programForCube->getUniformLocation("material.diffuse");
-		glUniform1i(texDiffuse, 0);
+		glBindTexture(GL_TEXTURE_2D, this->cubetex->getTexHandle());
+		glUniform1i(programForCube->getUniformLocation("material.diffuse"), 0);
 
 		glActiveTexture(GL_TEXTURE1);
-		this->cubetexSpec->bind();
-		GLint texSpecular = programForCube->getUniformLocation("material.specular");
-		glUniform1i(texSpecular, 1);
+		glBindTexture(GL_TEXTURE_2D, this->cubetexSpec->getTexHandle());
+		glUniform1i(programForCube->getUniformLocation("material.specular"), 1);
 
 		// End TODO
 
@@ -179,14 +177,12 @@ namespace cgCourse
 		 *       analogue to the function above.
 		*/
 		glActiveTexture(GL_TEXTURE0);
-		this->torustex->bind();
-		GLint texDiffuse = programForTorus->getUniformLocation("material.diffuse");
-		glUniform1i(texDiffuse, 0);
+		glBindTexture(GL_TEXTURE_2D, this->torustex->getTexHandle());
+		glUniform1i(programForCube->getUniformLocation("material.diffuse"), 0);
 
 		glActiveTexture(GL_TEXTURE1);
-		this->torustexSpec->bind();
-		GLint texSpecular = programForTorus->getUniformLocation("material.specular");
-		glUniform1i(texSpecular, 1);
+		glBindTexture(GL_TEXTURE_2D, this->torustexSpec->getTexHandle());
+		glUniform1i(programForCube->getUniformLocation("material.specular"), 1);
 
 
 		// End TODO
