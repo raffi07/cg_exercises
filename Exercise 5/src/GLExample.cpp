@@ -67,16 +67,16 @@ namespace cgCourse
 		 *      already in this class for this purpose.     
 		 */
 		this->cubetex = std::make_shared<Texture>();
-		this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/container.png");
+		this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/own.jpg");
 
 		this->cubetexSpec = std::make_shared<Texture>();
-		this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/container_specular.png");
+		this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/own_specular.jpg");
 
 		this->torustex = std::make_shared<Texture>();
-		this->torustex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall.jpg");
+		this->torustex->loadFromFile(this->getPathToExecutable() + "../../res/own.jpg");
 
 		this->torustexSpec = std::make_shared<Texture>();
-		this->torustexSpec->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_specular.jpg");
+		this->torustexSpec->loadFromFile(this->getPathToExecutable() + "../../res/own_specular.jpg");
 
 		// End TODO
 

@@ -58,8 +58,8 @@ void main()
 	 *      remember that you can also use the color output for debugging of the
 	 *      texture maps and texture coordinates in case that you face troubles.
 	 */
-	color = (ambientColor + diffuseColor) * colorMap.rgb + (specularColor * texture(material.specular, texCoord.xy).rgb), 1.0;
 
+	color = (ambientColor + diffuseColor) * colorMap.rgb + (specularColor * texture(material.specular, texCoord.xy).rgb), 1.0;
 	// End TODO
 
 }
