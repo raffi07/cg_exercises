@@ -11,6 +11,7 @@ layout(location = 0) in vec3 vPosition;
 layout(location = 1) in vec3 vColor;
 layout(location = 2) in vec3 vNormal;
 layout(location = 3) in vec2 vTexCoords;
+layout(location = 4) in vec3 vTangent;
 
 
 
@@ -20,6 +21,7 @@ out vec3 objectColor;
 out vec3 vertexNormal;
 out vec3 worldPos;
 out vec2 texCoord;
+out mat3 TBN;
 
 
 
@@ -36,6 +38,11 @@ void main(){
 
 	/* TODO: calculate the tbn matrix and update the normal here */
 	vertexNormal = normalize(mat3(transpose(inverse(modelMatrix))) * vNormal);
+
+	vec3 T = normalize(vec3(modelMatrix * vec4(vTangent, 0.0)));
+	vec3 N = normalize(vec3(modelMatrix * vec4(vNormal, 0.0)));
+	vec3 B = cross(N, T);
+	TBN = mat3(T, B, N);
 
   	// End TODO
 }

@@ -49,7 +49,7 @@ namespace cgCourse
         
         // Init multiline field for normals of objects
         if(this->torus->getNormals().size() > 0) {
-            this->normalsTorus = std::make_shared<MultiLine>(this->torus->getPositions(), this->torus->getNormals());
+            this->normalsTorus = std::make_shared<MultiLine>(this->torus->getPositions(), this->torus->getNormals(), this->torus->getTangents());
             constructed = this->normalsTorus->createVertexArray(0, 1, 2, 3, 4);
             this->normalsTorus->setPosition(glm::vec3(1.0, 0.0, 0.0));
         }
@@ -65,8 +65,8 @@ namespace cgCourse
 		 */
 
 		this->cubeNormaltex = std::make_shared<Texture>();
-		//this->cubeNormaltex->loadFromFile(this->getPathToExecutable() + "../../res/container_normal.jpg");
-		this->cubeNormaltex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_normal.jpg");
+		this->cubeNormaltex->loadFromFile(this->getPathToExecutable() + "../../res/container_normal.jpg");
+		//this->cubeNormaltex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_normal.jpg");
 		this->torusNormaltex = std::make_shared<Texture>();
 		this->torusNormaltex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_normal.jpg");
 
@@ -74,11 +74,11 @@ namespace cgCourse
         // End TODO
         
 		this->cubetex = std::make_shared<Texture>();
-		//this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/container.png");
-		this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall.jpg");
+		this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/container.png");
+		//this->cubetex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall.jpg");
 		this->cubetexSpec = std::make_shared<Texture>();
-        //this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/container_specular.png");
-		this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_specular.jpg");
+        this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/container_specular.png");
+		//this->cubetexSpec->loadFromFile(this->getPathToExecutable() + "../../res/brickwall_specular.jpg");
         this->torustex = std::make_shared<Texture>();
 		this->torustex->loadFromFile(this->getPathToExecutable() + "../../res/brickwall.jpg");
 		this->torustexSpec = std::make_shared<Texture>();

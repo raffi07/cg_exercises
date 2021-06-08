@@ -10,13 +10,14 @@ in vec3 objectColor;
 in vec3 vertexNormal;
 in vec3 worldPos;
 in vec2 texCoord;
+in mat3 TBN;
 
 uniform sampler2D torustex;
 uniform sampler2D torustexSpec;
 
 /* TODO declare normal texture samplers here */
 
-
+uniform sampler2D torusNormaltex;
 
 // END TODO
 
@@ -40,7 +41,10 @@ void main()
      * normal information for the phong lighting. 
 	 *
      */
-    vec3 normal = vertexNormal;
+//    vec3 normal = vertexNormal;
+	vec3 normal = texture(torusNormaltex, texCoord.xy).rgb	;
+	normal = normalize(normal * 2.0 - 1.0);
+	normal = normalize(TBN * normal);
     
 
 

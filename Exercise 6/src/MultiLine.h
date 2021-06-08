@@ -9,7 +9,8 @@ namespace cgCourse
 	{
 	public:
 		MultiLine(const std::vector< glm::vec3 >& _vertices,
-                  const std::vector< glm::vec3 >& _normals);
+                  const std::vector< glm::vec3 >& _normals,
+                  const std::vector< glm::vec3 >& _tangents);
         
         void draw() const override;
         void initIndexBuffer() override;

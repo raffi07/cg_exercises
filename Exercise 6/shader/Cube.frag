@@ -10,13 +10,14 @@ in vec3 objectColor;
 in vec3 vertexNormal;
 in vec3 worldPos;
 in vec2 texCoord;
+in mat3 TBN;
 
 uniform sampler2D cubetex;
 uniform sampler2D cubetexSpec;
 
 /* TODO declare normal texture samplers here */
 
-
+uniform sampler2D cubeNormaltex;
 
 // END TODO
 
@@ -40,8 +41,10 @@ void main()
      * normal information for the phong lighting. 
 	 *
      */
-    vec3 normal = vertexNormal;
-    
+	vec3 normal = texture(cubeNormaltex, texCoord.xy).rgb	;
+	normal = normalize(normal * 2.0 - 1.0);
+	normal = normalize(TBN * normal);
+//	vec3 normal = vertexNormal;  
 
 
 
